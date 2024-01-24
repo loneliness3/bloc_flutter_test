@@ -19,6 +19,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   void initState() {
+    print('home init state');
     homeBloc.add(HomeInitialEvent());
     super.initState();
   }
@@ -51,18 +52,17 @@ class _HomeState extends State<Home> {
                   builder: (context) => WishListPage(),
                 ));
             break;
-          case WishListAddedActionState:
-            ScaffoldMessenger.of(context)
-                .showSnackBar(SnackBar(content: Text("Added to wishlist")));
-            break;
-          case ExtraPickActionState:
-            ScaffoldMessenger.of(context)
-                .showSnackBar(SnackBar(content: Text("Already Picked")));
-            break;
           case NotiState:
             final notiState = state as NotiState;
-            ScaffoldMessenger.of(context)            
-                .showSnackBar(SnackBar(content: Text(notiState.message)));
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                backgroundColor: notiState.bgColor,
+                duration: Duration(seconds: 1),
+                content: Row(
+                  children: [
+                    notiState.icon,
+                    Text(notiState.message),
+                  ],
+                )));
             break;
           default:
             ScaffoldMessenger.of(context)
@@ -82,7 +82,7 @@ class _HomeState extends State<Home> {
 
           case HomeLoadedSuccessState:
             final successState = state as HomeLoadedSuccessState;
-            
+
             return Scaffold(
               backgroundColor: Color.fromARGB(255, 45, 143, 224),
               appBar: AppBar(

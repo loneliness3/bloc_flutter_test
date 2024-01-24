@@ -7,5 +7,7 @@ class WishlistInitialEvent extends WishlistEvent{
 
 }
 
-class WishlistLoadDataEvent extends WishlistEvent {
+class WishlistitemRemoveEvent extends WishlistEvent{
+  final ProductModel product;
+  WishlistitemRemoveEvent({required this.product});
 }

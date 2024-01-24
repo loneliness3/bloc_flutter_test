@@ -1,8 +1,11 @@
+import 'dart:ui';
+
 import 'package:bloc/bloc.dart';
 import 'package:bloctest/data/cartitem.dart';
 import 'package:bloctest/data/grecory.dart';
 import 'package:bloctest/data/wishlist.dart';
 import 'package:bloctest/features/home/models/home_product_model.dart';
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
 part 'home_event.dart';
@@ -28,11 +31,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<HomeProductWishlistButtonClickedEvent>(
       (event, emit) {
         if (wishlist.contains(event.product)) {
-          emit(NotiState(message: "Already Pick"));
+          emit(NotiState(message: "Already Pick",bgColor: Colors.red, icon: Icon(Icons.error)));
           print('already picked.,.......');
         } else {
           wishlist.add(event.product);
-          emit(NotiState(message: "Added to WishList"));
+          emit(NotiState(message: "Added to WishList", bgColor: Colors.green, icon: Icon(Icons.check_box)));
         }
 
         // for (var i in wishlist) {

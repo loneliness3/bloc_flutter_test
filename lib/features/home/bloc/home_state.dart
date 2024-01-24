@@ -29,5 +29,7 @@ class HomeNavigateToCartPageActionState extends HomeActionState {}
 
 class NotiState extends HomeActionState {
   final String message;
-  NotiState({required this.message});
+  final Color bgColor;
+  final Icon icon;
+  NotiState({required this.message, required this.bgColor, required this.icon});
 }

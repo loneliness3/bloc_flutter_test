@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 
 class WishlistCard extends StatefulWidget {
   final ProductModel product;
-  const WishlistCard({super.key, required this.product});
+  final WishlistBloc wishlistBloc;
+  const WishlistCard({super.key, required this.product,required this.wishlistBloc});
 
   @override
   State<WishlistCard> createState() => _WishlistCardState();
 }
 
 class _WishlistCardState extends State<WishlistCard> {
-  WishlistBloc bloc = WishlistBloc();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -77,7 +77,8 @@ class _WishlistCardState extends State<WishlistCard> {
                   ),
                   IconButton(
                       onPressed: () {
-                        
+                        widget.wishlistBloc.add(
+                            WishlistitemRemoveEvent(product: widget.product));
                       },
                       icon: Icon(Icons.remove_circle_outline))
                 ],
